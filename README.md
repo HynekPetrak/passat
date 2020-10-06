@@ -1,6 +1,8 @@
 # Passat - password auditing tool
 
-A Python tool, that analyses password sets by performing various statistics. The statistics might be useful to asses password quality, common patern and effectiveness of password policy implementation. 
+A Python tool, that analyses password sets by performing various statistics. The statistics might help to assess general password quality, common paterns, weak password based on common base words or effectiveness of password policy implementation. 
+
+In can be used on any password sets, active directory ntds dumps, application password database dumps, credentilas collected during red team or pen test projects.
 
 ## Installation
 
@@ -51,6 +53,13 @@ Reading: pwd_sample.txt
 Processing: 823 passwords
 Completed: [########################################] [100%]
 ```
+Input file(s) can be in any of below 3 formats, one password per line:
+```
+password
+user:password
+user:hash:password
+```
+It's compatible with `hashcat --show` and `hashcat --show --user` output as well as with the output of John The Ripper.
 
 ## Sample results
 
