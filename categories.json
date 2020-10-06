@@ -1,0 +1,55 @@
+{
+    "brand": [
+	"Accenture", "adidas", "Adobe", "Allianz", "Amazon", "American", "Express", "Apple",
+	"Audi", "AXA", "BMW", "Budweiser", "Burberry", "Canon", "Cartier", "Caterpillar",
+	"Cisco", "Citi", "Coca-Cola", "Colgate", "Corona", "Danone", "DHL", "Dior",
+	"Discovery", "Disney", "eBay", "Facebook", "FedEx", "Ford", "GE", "Gillette",
+	"Goldman", "Sachs", "Google", "Gucci", "Harley", "Davidson", "Heineken", "Hermès",
+	"Hewlett", "Packard", "Enterprise", "H&M", "Honda", "HPE", "HSBC", "Huawei",
+	"Hyundai", "IBM", "IKEA", "Intel", "Jack", "Daniel's", "Deere", "Johnnie",
+	"Walker", "Johnson", "J.P.", "Morgan", "Kellogg's", "KFC", "Kia", "Land", "Rover",
+	"Lego", "Lenovo", "L'Oréal", "Louis", "Vuitton", "MasterCard", "McDonald's",
+	"Mercedes-Benz", "Microsoft", "Mini", "Moët", "Chandon", "Morgan", "Stanley", "MTV",
+	"Nescafe", "Nestlé", "Nike", "Nissan", "Oracle", "Pampers", "Panasonic", "PayPal",
+	"Pepsi", "Philips", "Porsche", "Prada", "Ralph", "Lauren", "Samsung", "Santander",
+	"SAP", "Shell", "Siemens", "Smirnoff", "Sony", "Sprite", "Starbucks", "Tesla",
+	"Thomson", "Reuters", "Tiffany", "Toyota", "UPS", "Visa", "Volkswagen", "Xerox", "Zara"
+    ],
+    "password": [
+	"s3cr3t", "secret", "password", "p@$$", "pa55word",
+        "pass", "pa$$"
+    ],
+    "initial": [
+	"welcome", "changeme", "letmein", "admin", "enter", "please",
+	"remember", "rescue"
+    ],
+    "location": [
+	 "Chenai", "Bangalore", "Japan", "China", "Thailand",
+	 "Sidney", "Kolkata", "Indonesia", "India", "Shanghai", "Jakarta",
+	 "Octo", "Newyork", "Mexico", "England"
+    ],
+    "name": [
+	 "John", "Mark", "Daniel", "Michael", "Robert", "Paul", "James",
+	 "David", "Andrew", "Peter", "Thomas", "Maria"
+    ],
+    "color": [
+	 "red", "blue", "black", "green", "white", "pink", "orange", "brown",
+	 "purple", "yellow"
+    ],
+    "sequence": [
+	 "qwerty", "123456789", "987654321", "asdfghj", "abc123", "!@#$%^&",
+	 "abcd1234", "qazwsx", "qweasd", "asdfg", "zxcvbnm", "123123",
+	 "1111111", "2222222", "3333333", "4444444", "5555555", "6666666",
+	 "7777777", "8888888", "9999999", "lkjhgfds", "rfvtgb", "tgbyhn",
+	 "yhnujm", "asdzxc", "edcrfv", "wsxedc", "zxcasd", "123456",
+	 "qwertyuiop", "1qaz2wsx", "12345qwer", "q1w2e3r4", "qwer1234",
+	 "asdfasdf", "qazwsxedc", "asdfghjkl"
+    ],
+    "day_month": [
+	 "Monday", "Tuesday", "Wednesday", "Thursday", "Friday",
+	 "Saturday", "Sunday",
+	 "January", "February", "March", "April", "May", "June",
+         "July", "August", "September", "October", "November",
+         "December", "spring", "autumn", "summer", "winter"
+    ]
+}
