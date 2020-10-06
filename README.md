@@ -2,7 +2,7 @@
 
 A Python tool, that analyses password sets by performing various statistics. The statistics might help to assess general password quality, common paterns, weak password based on common base words or effectiveness of password policy implementation. 
 
-In can be used on any password sets, active directory ntds dumps, application password database dumps, credentilas collected during red team or pen test projects.
+It can be used on any password sets, active directory ntds dumps, application password database dumps, credentilas collected during red team or pen test projects.
 
 ## Installation
 
