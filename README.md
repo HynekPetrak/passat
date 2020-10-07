@@ -1,4 +1,4 @@
-# Passat - password auditing tool
+# passat - password auditing tool
 
 A Python tool, that analyses password sets by performing various statistics. The statistics might help to assess general password quality, common paterns, weak password based on common base words or effectiveness of password policy implementation. 
 
