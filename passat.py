@@ -62,6 +62,7 @@ hex_re = re.compile("^\$HEX\[([0-9a-fA-F]*)\]$", re.UNICODE)
 
 line_re = re.compile("(?:.*?:)?(?:.*?:)?(.*)$", re.UNICODE)
 
+
 def print_counter(title, cnt, grand_total, limit=15):
     print(f"{title}")
     print("=" * len(title))
@@ -104,7 +105,7 @@ def main():
                         action="store_true")
     parser.add_argument("--no-categories", help="don't perform fuzzy categorization, improves performance",
                         action="store_true")
-    parser.add_argument("-c", "--categories", help="json file with password categories for fuzzy matching",
+    parser.add_argument("-c", "--categories", help="json file with password categories for fuzzy matching, defaults to categories.json",
                         default="categories.json")
     args = parser.parse_args()
 
@@ -234,7 +235,7 @@ def main():
     if not args.no_categories:
         print_counter("Categories", cnt, grand_total)
         print_counter("Password base words:", cnt_root, grand_total)
-    print_counter("Password lenght frequency:", cnt_length, grand_total)
+    print_counter("Password length frequency:", cnt_length, grand_total)
     print_counter("Password values:", cnt_pwd, grand_total)
     print_counter("Charsets and sequences:", cnt_regex,
                   grand_total, len(stats_regex))
