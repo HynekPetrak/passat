@@ -13,18 +13,18 @@ VERSION = "1.6"
 SYMBOLS = "~`!@#$%^&*()_\-+=}\]{[|\\\"':;?/>.<, "
 
 stats_regex = {
-    "Contains: 123": f"^.*123.*$",
-    "Contains: 1234": f"^.*1234.*$",
-    "Contains: space": "^(?=.*[ ]).*$",
+    "Contains: 123": f"123",
+    "Contains: 1234": f"1234",
+    "Contains: space": " ",
     "Has: All lowercase": "^[a-z]+$",
     "Has: All num": "^[\d]+$",
     "Has: All uppercase": "^[A-Z]+$",
     "Has: First capital, last number": "^[A-Z].*\d$",
     "Has: First capital, last symbol": f"^[A-Z].*[{SYMBOLS}]$",
-    "Has: Four digits at the end": "^.*[^\d]\d\d\d\d$",
-    "Has: Single digit at the end": "^.*[^\d]\d$",
-    "Has: Three digits at the end": "^.*[^\d]\d\d\d$",
-    "Has: Two digits at the end": "^.*[^\d]\d\d$",
+    "Has: Four digits at the end": "[^\d]\d\d\d\d$",
+    "Has: Single digit at the end": "[^\d]\d$",
+    "Has: Three digits at the end": "[^\d]\d\d\d$",
+    "Has: Two digits at the end": "[^\d]\d\d$",
     "Has: Upper + lower + num + symbol": f"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[{SYMBOLS}]).*$",
     "Has: Lower + num + symbol": f"^(?=.*[a-z])(?=.*\d)(?=.*[{SYMBOLS}])[a-z\d{SYMBOLS}]*$",
     "Has: Upper + num + symbol": f"^(?=.*[A-Z])(?=.*\d)(?=.*[{SYMBOLS}])[A-Z\d{SYMBOLS}]*$",
@@ -33,12 +33,12 @@ stats_regex = {
     "Has: Alpha + symbol": f"^(?=.*[a-zA-Z])(?=.*[{SYMBOLS}])[A-Za-z{SYMBOLS}]*$",
     "Has: Upper + lower + symbol": f"^(?=.*[a-z])(?=.*[A-Z])(?=.*[{SYMBOLS}])[A-Za-z{SYMBOLS}]*$",
     "Has: Upper + lower": "^(?=.*[a-z])(?=.*[A-Z])[A-Za-z]*$",
-    "Last digit is '0'": "^.*0$",
-    "Last digits are '020'": "^.*020$",
-    "Last digits are '19xx'": "^.*19\d\d$",
-    "Last digits are '20'": "^.*20$",
-    "Last digits are '2020'": "^.*2020$",
-    "Last digits are '20xx'": "^.*20\d\d$",
+    "Last digit is '0'": "0$",
+    "Last digits are '020'": "020$",
+    "Last digits are '19xx'": "19\d\d$",
+    "Last digits are '20'": "20$",
+    "Last digits are '2020'": "2020$",
+    "Last digits are '20xx'": "20\d\d$",
     "Seq: 1 upper > lower > num or symbol": f"^[A-Z][a-z]+[\d{SYMBOLS}]+$",
     "Seq: 1 upper > lower > num": f"^[A-Z][a-z]+[\d]+$",
     "Seq: aplha > num > alpha": f"^[A-Za-z]+\d+[A-Za-z]+$",
@@ -49,16 +49,20 @@ stats_regex = {
 
 stats = {k: re.compile(v, re.UNICODE) for (k, v) in stats_regex.items()}
 
-pat_regex = {
-    "[a-z]": "a",
-    "[A-Z]": "A",
-    "[\d]": "1",
-    f"[{SYMBOLS}]": "@",
-}
+#pat_regex = {
+#    "[a-z]": "a",
+#    "[A-Z]": "A",
+#    "[\d]": "1",
+#    f"[{SYMBOLS}]": "@",
+#}
+#
+#pat_subs = {v: re.compile(k, re.UNICODE) for (k, v) in pat_regex.items()}
 
-pat_subs = {v: re.compile(k, re.UNICODE) for (k, v) in pat_regex.items()}
+tr_from = f'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789{SYMBOLS}'
+tr_to   =  'aaaaaaaaaaaaaaaaaaaaaaaaaaAAAAAAAAAAAAAAAAAAAAAAAAAA1111111111'.ljust(len(tr_from), '@')
+trans = str.maketrans(tr_from, tr_to)
 
-hex_re = re.compile("^\$HEX\[([0-9a-fA-F]*)\]$", re.UNICODE)
+#hex_re = re.compile("^\$HEX\[([0-9a-fA-F]*)\]$", re.UNICODE)
 
 line_re = re.compile("(?:.*?:)?(?:.*?:)?(.*)$", re.UNICODE)
 
@@ -80,17 +84,17 @@ def print_counter(title, cnt, grand_total, limit=15):
 
 
 def progbar(curr, total, full_progbar=40):
-    frac = curr / total
-    filled_progbar = round(frac * full_progbar)
-    msg = 'Completed: [' + '#' * filled_progbar + ' ' * \
-        (full_progbar - filled_progbar) + '] ' + '[{:>4.0%}]'.format(frac)
-    if msg != progbar.last_message:
-        print(msg, end='\r')
-        progbar.last_message = msg
-        sys.stdout.flush()
+    frac = curr * 100 // total
+    if frac == progbar.last_frac:
+        return
+    progbar.last_frac = frac
 
+    filled_progbar = ('#' * (frac * full_progbar // 100)).ljust(full_progbar)
+    msg = 'Completed: [' + filled_progbar + '] ' + '[{:>3d}%]'.format(frac)
+    print(msg, end='\r')
+    #sys.stdout.flush()
 
-progbar.last_message = ''
+progbar.last_frac = -1
 
 
 def main():
@@ -151,9 +155,7 @@ def main():
             # user:password
             # user:hash:password
             # ... and extract password only
-            m = re.match(line_re, l)
-            if m:
-                p = m.group(1)
+            p = line_re.match(l).group(1)
 
             # skip empty passwords
             if not p:
@@ -162,9 +164,9 @@ def main():
             valid_passwords += 1
 
             # convert $HEX[abcd1234] passwords
-            m = re.match(hex_re, p)
-            if m:
-                p = binascii.unhexlify(m.group(1)).decode("latin1")
+            # m = hex_re.match(p)
+            if p.startswith("$HEX[") and p[-1] == "]":
+                p = binascii.unhexlify(p[5:-1]).decode("latin1")
 
             # length stats
             cnt_length[len(p)] += 1
@@ -178,25 +180,26 @@ def main():
             if args.freq:
                 cnt_totals["chars"] += len(p)
                 for letter in p:
-                    if letter.isalpha():
-                        cnt_alpha[letter] += 1
-                        cnt_totals["alpha"] += 1
-                    elif letter.isnumeric():
+                    if letter.isnumeric():
                         cnt_num[letter] += 1
                         cnt_totals["num"] += 1
+                    elif letter.isalpha():
+                        cnt_alpha[letter] += 1
+                        cnt_totals["alpha"] += 1
                     else:
                         cnt_symbol[letter] += 1
                         cnt_totals["symbol"] += 1
 
             # pattern counting
-            pwd_pat = p
-            for subst, pat in pat_subs.items():
-                pwd_pat = pat.sub(subst, pwd_pat)
+            #pwd_pat = p
+            #for subst, pat in pat_subs.items():
+            #    pwd_pat = pat.sub(subst, pwd_pat)
+            pwd_pat = p.translate(trans)
             cnt_pattern[pwd_pat] += 1
 
             # Matching various regex categories
             for cat, pat in stats.items():
-                if re.search(pat, p):
+                if pat.search(p):
                     cnt_regex[cat] += 1
                     if verbose:
                         print(cat)
