@@ -99,7 +99,7 @@ name           18    2.2%
 location       13    1.6%
 color           7    0.9%
 ```
-### Statistics about content and sequences
+### Charset, sequences statistics
 ```
 Charsets and sequences:
 =======================
