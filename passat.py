@@ -216,18 +216,23 @@ def main():
                 mall = process.extract(p, words)
                 if verbose:
                     print(mall)
+                pw_categories = set()
                 for m in mall:
+                    if verbose:
+                        print(f"{p} > {m[0]} : {m[1]}")
                     if m[1] > 80:
                         cnt_root[m[0]] += 1
+                        pw_categories.update(word2category[m[0]])
 
-                        pw_categories = word2category[m[0]]
+                if not pw_categories:
+                    pw_categories = ['no_category']
 
-                        #print(f">>>> {pw_match} {score} {pw_categories}")
-                        for pw_category in pw_categories:
-                            cnt[pw_category] += 1
-                        if verbose:
-                            print(f"{p} > {m[0]} : {m[1]} > {pw_categories}")
-                            #print(f"'{p}'", highest, pw_category)
+                #print(f">>>> {pw_match} {score} {pw_categories}")
+                for pw_category in pw_categories:
+                    cnt[pw_category] += 1
+                if verbose:
+                    print(f"{p} > {pw_categories}")
+                    #print(f"'{p}'", highest, pw_category)
 
             if verbose:
                 print()
