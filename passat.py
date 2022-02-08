@@ -8,7 +8,7 @@ import json
 from fuzzywuzzy import process
 from collections import Counter
 
-VERSION = "1.6"
+VERSION = "1.7"
 
 SYMBOLS = "~`!@#$%^&*()_\-+=}\]{[|\\\"':;?/>.<, "
 
@@ -114,10 +114,16 @@ def main():
     args = parser.parse_args()
 
     if not args.no_categories:
+        word2category = {}
         with open(args.categories, "r") as read_file:
             categories = json.load(read_file)
-        words = [x for y in categories.values() for x in y]
-        word2category = {x: k for k, v in categories.items() for x in v}
+        words = set([x for y in categories.values() for x in y])
+        for w in words:
+            cats = []
+            for c, v in categories.items():
+                if w in v:
+                    cats.append(c)
+            word2category[w] = cats
 
     verbose = args.verbose
     cnt = Counter()
@@ -206,21 +212,22 @@ def main():
 
             # Fuzzy matching to categories
             if len(p) > 3 and not args.no_categories and words:
-                highest = process.extractOne(p, words)
+                #highest = process.extractOne(p, words)
                 mall = process.extract(p, words)
                 if verbose:
                     print(mall)
                 for m in mall:
                     if m[1] > 80:
                         cnt_root[m[0]] += 1
-                pw_match, score = highest
-                pw_category = word2category[pw_match]
-                if score < 65:
-                    pw_category = 'other'
-                cnt[pw_category] += 1
-                if verbose:
-                    print(f"{p} > {pw_match} : {score} > {pw_category}")
-                    #print(f"'{p}'", highest, pw_category)
+
+                        pw_categories = word2category[m[0]]
+
+                        #print(f">>>> {pw_match} {score} {pw_categories}")
+                        for pw_category in pw_categories:
+                            cnt[pw_category] += 1
+                        if verbose:
+                            print(f"{p} > {m[0]} : {m[1]} > {pw_categories}")
+                            #print(f"'{p}'", highest, pw_category)
 
             if verbose:
                 print()

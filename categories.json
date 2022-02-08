@@ -7,13 +7,14 @@
 	"Goldman", "Sachs", "Google", "Gucci", "Harley", "Davidson", "Heineken", "Hermès",
 	"Hewlett", "Packard", "Enterprise", "H&M", "Honda", "HPE", "HSBC", "Huawei",
 	"Hyundai", "IBM", "IKEA", "Intel", "Jack", "Daniel's", "Deere", "Johnnie",
-	"Walker", "Johnson", "J.P.", "Morgan", "Kellogg's", "KFC", "Kia", "Land", "Rover",
+	"Walker", "Johnson", "J.P.Morgan", "Kellogg's", "KFC", "Kia", "Land", "Rover",
 	"Lego", "Lenovo", "L'Oréal", "Louis", "Vuitton", "MasterCard", "McDonald's",
 	"Mercedes-Benz", "Microsoft", "Mini", "Moët", "Chandon", "Morgan", "Stanley", "MTV",
 	"Nescafe", "Nestlé", "Nike", "Nissan", "Oracle", "Pampers", "Panasonic", "PayPal",
 	"Pepsi", "Philips", "Porsche", "Prada", "Ralph", "Lauren", "Samsung", "Santander",
 	"SAP", "Shell", "Siemens", "Smirnoff", "Sony", "Sprite", "Starbucks", "Tesla",
-	"Thomson", "Reuters", "Tiffany", "Toyota", "UPS", "Visa", "Volkswagen", "Xerox", "Zara"
+	"Thomson", "Reuters", "Tiffany", "Toyota", "UPS", "Visa", "Volkswagen", "Xerox",
+       	"Zara", "Porsche", "Oracle", "Dell", "Thinkpad"
     ],
     "password": [
 	"s3cr3t", "secret", "password", "p@$$", "pa55word",
@@ -21,12 +22,13 @@
     ],
     "initial": [
 	"welcome", "changeme", "letmein", "admin", "enter", "please",
-	"remember", "rescue"
+	"remember", "rescue", "initial", "letsgo"
     ],
     "location": [
 	 "Chenai", "Bangalore", "Japan", "China", "Thailand",
 	 "Sidney", "Kolkata", "Indonesia", "India", "Shanghai", "Jakarta",
-	 "Octo", "Newyork", "Mexico", "England"
+	 "Octo", "Newyork", "Mexico", "England",
+	 "Venus", "Mars", "Earth", "Ocean", "Home", "Office", "Moon"
     ],
     "name": [
 	 "John", "Mark", "Daniel", "Michael", "Robert", "Paul", "James",
@@ -50,6 +52,50 @@
 	 "Saturday", "Sunday",
 	 "January", "February", "March", "April", "May", "June",
          "July", "August", "September", "October", "November",
-         "December", "spring", "autumn", "summer", "winter"
+         "December", "spring", "autumn", "summer", "winter",
+	 "Halloween", "day", "night"
+    ],
+    "top200": [
+	"123456", "password", "123456789", "12345678", "12345",
+	"qwerty", "123123", "111111", "abc123", "1234567", "dragon",
+	"1q2w3e4r", "sunshine", "654321", "master", "1234", "football",
+	"1234567890", "000000", "computer", "666666", "superman",
+	"michael", "internet", "iloveyou", "daniel", "1qaz2wsx",
+	"monkey", "shadow", "jessica", "letmein", "baseball", "whatever",
+	"princess", "abcd1234", "123321", "starwars", "121212", "thomas",
+	"zxcvbnm", "trustno1", "killer", "welcome", "jordan", "aaaaaa",
+	"123qwe", "freedom", "password1", "charlie", "batman", "jennifer",
+	"7777777", "michelle", "diamond", "oliver", "mercedes",
+	"benjamin", "11111111", "snoopy", "samantha", "victoria",
+	"matrix", "george", "alexander", "secret", "cookie",
+	"asdfgh", "987654321", "123abc", "orange", "fuckyou",
+	"asdf1234", "pepper", "hunter", "silver", "joshua",
+	"banana", "1q2w3e", "chelsea", "1234qwer", "summer",
+	"qwertyuiop", "phoenix", "andrew", "q1w2e3r4", "elephant",
+	"rainbow", "mustang", "merlin", "london", "garfield",
+	"robert", "chocolate", "112233", "samsung", "qazwsx",
+	"matthew", "buster", "jonathan", "ginger",
+	"flower", "555555", "test", "caroline", "amanda",
+	"maverick", "midnight", "martin", "junior", "88888888",
+	"anthony", "jasmine", "creative", "patrick", "mickey",
+	"123", "qwerty123", "cocacola", "chicken", "passw0rd",
+	"forever", "william", "nicole", "hello", "yellow",
+	"nirvana", "justin", "friends", "cheese", "tigger",
+	"mother", "liverpool", "blink182", "asdfghjkl", "andrea",
+	"spider", "scooter", "richard", "soccer", "rachel",
+	"purple", "morgan", "melissa", "jackson", "arsenal",
+	"222222", "qwe123", "gabriel", "ferrari", "jasper",
+	"danielle", "bandit", "angela", "scorpion", "prince",
+	"maggie", "austin", "veronica", "nicholas", "monster",
+	"dexter", "carlos", "thunder", "success", "hannah",
+	"ashley", "131313", "stella", "brandon", "pokemon",
+	"joseph", "asdfasdf", "999999", "metallica", "december",
+	"chester", "taylor", "sophie", "samuel", "rabbit",
+	"crystal", "barney", "xxxxxx", "steven", "ranger",
+	"patricia", "christian", "asshole", "spiderman", "sandra",
+	"hockey", "angels", "security", "parker", "heather",
+	"888888", "victor", "harley", "333333", "system",
+	"slipknot", "november", "jordan23", "canada", "tennis",
+	"qwertyui", "casper"
     ]
 }
